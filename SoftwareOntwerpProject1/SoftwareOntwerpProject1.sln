@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{784033EB-2147-4822-969D-E17FB726CEA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Program", "Program\Program.csproj", "{784033EB-2147-4822-969D-E17FB726CEA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schip", "Schip\Schip.csproj", "{73536189-48B9-4F11-9E1D-CACE10BB26FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScheepvaartBL", "Schip\ScheepvaartBL.csproj", "{73536189-48B9-4F11-9E1D-CACE10BB26FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
