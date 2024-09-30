@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScheepvaartBL.Objects
+namespace ScheepvaartBL.Enums
 {
-    internal class GastTanker
+    public enum GasEnum
     {
+        LPG,
+        LNG,
+        Ammoniak
     }
 }

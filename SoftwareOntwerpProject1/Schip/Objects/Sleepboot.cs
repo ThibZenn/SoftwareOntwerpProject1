@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ScheepvaartBL.Objects
 {
-    internal class Sleepboot
+    public class Sleepboot : Schip
     {
+        public Sleepboot(double lengte, double breedte, double tonnage, string naam) : base(lengte, breedte, tonnage, naam) { }        
     }
 }

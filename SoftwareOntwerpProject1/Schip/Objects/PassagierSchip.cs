@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace ScheepvaartBL.Objects
 {
-    internal class PassagierSchip
+    public class PassagierSchip : Schip
     {
+        public int AantalPassagiers { get; set; }
+
+        public PassagierSchip(double lengte, double breedte, double tonnage, string naam, int aantalPassagiers) : base(lengte, breedte, tonnage, naam)
+        {
+            AantalPassagiers = aantalPassagiers;
+        }
     }
 }
