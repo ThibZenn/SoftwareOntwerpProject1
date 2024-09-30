@@ -20,15 +20,53 @@ namespace ScheepvaartBL.Objects
             }
         }
 
-        public Dictionary<string, Schip> VlotenLijst { get; set; }
+        public Dictionary<string, Vloot> VlotenLijst { get; set; }
 
         public List<string> Havens { get; set; }
 
-        public Rederij(string naam, Dictionary<string, Schip> schepenLijst, List<string> havens)
+        public Rederij(string naam, Dictionary<string, Vloot> vlotenLijst, List<string> havens)
         {
             Naam = naam;
-            VlotenLijst = schepenLijst;
+            VlotenLijst = vlotenLijst;
             Havens = havens;
+            VlotenLijst = new Dictionary<string, Vloot>();
+        }
+
+        public decimal totaleWaarde()
+        {
+            return VlotenLijst.Values.Sum(vloot => vloot.TotaleVlootWaarde());
+        }
+
+        public int aantalPassagiers()
+        {
+            return VlotenLijst.Values.Sum(vloot => vloot.TotaalPassagiersVloot());
+        }
+
+        // we gaan een nieuwe dictionary vullen met het tonnage met als key de vlootnaam
+        public Dictionary<double, Vloot> TonnagePerVloot(Dictionary<double, Vloot> tonnagePerVloot) 
+        {
+             
+            foreach (var vloot in VlotenLijst.Values)
+            {
+                double totaalTonnage = vloot.TotaalTonnageVloot();
+
+                if (!tonnagePerVloot.ContainsKey(totaalTonnage))
+                {
+                    tonnagePerVloot.Add(totaalTonnage, vloot);
+                }
+            }
+
+            return tonnagePerVloot;
+        }
+
+        public double TotaalVolume()
+        {
+            return VlotenLijst.Values.Sum(vloot => vloot.TotaalVolume());
+        }
+
+        public int BeschikbareSleepboten()
+        {
+            return VlotenLijst.Values.Sum(vloot => vloot.TotaalSleepbotenVloot());
         }
     }
 }
