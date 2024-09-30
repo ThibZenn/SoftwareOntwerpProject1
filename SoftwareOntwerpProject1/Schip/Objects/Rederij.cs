@@ -22,10 +22,13 @@ namespace ScheepvaartBL.Objects
 
         public Dictionary<string, Schip> VlotenLijst { get; set; }
 
-        public Rederij(string naam, Dictionary<string, Schip> schepenLijst)
+        public List<string> Havens { get; set; }
+
+        public Rederij(string naam, Dictionary<string, Schip> schepenLijst, List<string> havens)
         {
             Naam = naam;
             VlotenLijst = schepenLijst;
+            Havens = havens;
         }
     }
 }
