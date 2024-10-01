@@ -149,25 +149,6 @@ namespace ScheepvaartBL.Objects
             }
         }
 
-        // Verplaatst een schip van deze vloot naar een andere vloot
-        public void VerplaatsSchip(string naamSchip, Vloot startVloot, Vloot eindVloot)
-        {
-            //schip verwijderen
-            //toevoegen in andere
-
-
-            // Zoek het schip op basis van de naam
-            Schip schip = ZoekSchip(naamSchip);
-
-            if (schip != null && VerwijderSchip(naamSchip)) 
-            {
-                nieuweVloot.VoegSchipToe(schip);
-                Console.WriteLine($"Schip {naamSchip} is verplaatst van vloot {Naam} naar vloot {nieuweVloot.Naam}");
-            }
-            else
-            {
-                Console.WriteLine($"Verplaatsing mislukt, schip {naamSchip} niet gevonden.");
-            }
-        }
+        
     }
 }

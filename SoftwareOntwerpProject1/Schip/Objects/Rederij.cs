@@ -108,7 +108,7 @@ namespace ScheepvaartBL.Objects
             }
         }
 
-        public void ZoekVloot(string naam)
+        public Vloot ZoekVloot(string naam)
         {
             Dictionary<string, Vloot> vlootDictionary = new Dictionary<string, Vloot>();
 
@@ -125,6 +125,30 @@ namespace ScheepvaartBL.Objects
             else
             {
                 throw new Exception("Deze vloot zit niet in de rederij.");
+            }
+
+            return gevondenVloot;
+        }
+
+        // Verplaatst een schip van deze vloot naar een andere vloot
+        public void VerplaatsSchip(string naamSchip, string startVloot, string eindVloot)
+        {
+
+            // Zoek het schip op basis van de naam
+            Vloot vloot1 = ZoekVloot(startVloot);
+            Vloot vloot2 = ZoekVloot(eindVloot);
+
+            Schip gevondenSchip = vloot1.ZoekSchip(naamSchip);
+
+            if (gevondenSchip != null)
+            {
+                vloot1.VerwijderSchip(gevondenSchip);
+                vloot2.VoegSchipToe(gevondenSchip);
+                Console.WriteLine("Verplaatsing gelukt!");
+            }
+            else
+            {
+                Console.WriteLine("Het te verplaatsen schip bestaat niet.");
             }
         }
     }
