@@ -110,17 +110,24 @@ namespace ScheepvaartBL.Objects
         // Retourneert het Schip || indien niet gevonden => null
         public Schip ZoekSchip(string naamSchip)
         {
-            // Controleer of het schip in de dictionary zit
-            if (SchepenLijst.ContainsKey(naamSchip))
+            Dictionary<string, Schip> schipDictionary = new Dictionary<string, Schip>();
+
+            //dictionary opvullen volgens naam van het schip
+            foreach (var item in this.SchepenLijst)
             {
-                Console.WriteLine($"Schip {naamSchip} gevonden.");
-                return SchepenLijst[naamSchip];
+                schipDictionary.Add(item.Naam, item);
+            }
+
+            if (schipDictionary.TryGetValue(naamSchip, out Schip gevondenSchip))
+            {
+                Console.WriteLine($"Naam = {gevondenSchip.Naam} is gevonden.");
             }
             else
             {
                 Console.WriteLine($"Schip {naamSchip} niet gevonden in vloot {Naam}.");
-                return null;  // Retourneer null als het schip niet bestaat
             }
+
+            return gevondenSchip;
         }
 
 
@@ -134,7 +141,7 @@ namespace ScheepvaartBL.Objects
             else
             {
                 Console.WriteLine($"Schepen in vloot {Naam}:");
-                foreach (var schip in SchepenLijst.Values)
+                foreach (var schip in SchepenLijst)
                 {
                     //Schip klasse ToString()
                     Console.WriteLine(schip);
@@ -143,8 +150,12 @@ namespace ScheepvaartBL.Objects
         }
 
         // Verplaatst een schip van deze vloot naar een andere vloot
-        public void VerplaatsSchip(string naamSchip, Vloot nieuweVloot)
+        public void VerplaatsSchip(string naamSchip, Vloot startVloot, Vloot eindVloot)
         {
+            //schip verwijderen
+            //toevoegen in andere
+
+
             // Zoek het schip op basis van de naam
             Schip schip = ZoekSchip(naamSchip);
 
