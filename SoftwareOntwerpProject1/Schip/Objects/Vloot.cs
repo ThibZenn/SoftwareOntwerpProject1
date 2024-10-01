@@ -28,7 +28,6 @@ namespace ScheepvaartBL.Objects
             SchepenLijst = schepenLijst;
         }
 
-
 		// Er moet van elke vloot apart een waarde worden berekent, anders kan de rederij niet aan de juiste informatie.
 
 		public decimal TotaleVlootWaarde()
@@ -83,5 +82,28 @@ namespace ScheepvaartBL.Objects
 		{
 			return SchepenLijst.OfType<Sleepboot>().Count();
 		}
+		public void VoegSchipToe(List<Schip> schepenLijst, Schip toeTeVoegenSchip)
+		{
+			if (!schepenLijst.Contains(toeTeVoegenSchip))
+			{
+				schepenLijst.Add(toeTeVoegenSchip);
+			}
+			else
+			{
+                Console.WriteLine("Het schip dat u wilt toevoegen bestaat al.");
+			}
+		}
+
+		public void VerwijderSchip(List<Schip> schepenLijst, Schip toeTeVoegenSchip)
+		{
+            if (schepenLijst.Contains(toeTeVoegenSchip))
+            {
+                schepenLijst.Remove(toeTeVoegenSchip);
+            }
+            else
+            {
+                Console.WriteLine("Het schip dat u wilt verwijderen bestaat niet.");
+            }
+        }
     }
 }
