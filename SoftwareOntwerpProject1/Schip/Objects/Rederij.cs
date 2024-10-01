@@ -20,14 +20,14 @@ namespace ScheepvaartBL.Objects
             }
         }
 
-        public Dictionary<string, Schip> VlotenLijst { get; set; }
+        public Dictionary<string, Vloot> VlotenLijst { get; set; }
 
         public List<string> Havens { get; set; }
 
-        public Rederij(string naam, Dictionary<string, Schip> schepenLijst, List<string> havens)
+        public Rederij(string naam, Dictionary<string, Vloot> vlotenLijst, List<string> havens)
         {
             Naam = naam;
-            VlotenLijst = schepenLijst;
+            VlotenLijst = vlotenLijst;
             Havens = havens;
         }
 
@@ -40,6 +40,42 @@ namespace ScheepvaartBL.Objects
             else
             {
                 Console.WriteLine("De haven die u wilt verwijderen bestaat niet.");
+            }
+        }
+
+        public void VlootToevoegen(string id, Vloot vloot)
+        {
+            if (this.VlotenLijst.ContainsKey(id))
+            {
+                throw new Exception("vloot is al toegevoegd.");
+            }
+            else
+            {
+                VlotenLijst.Add(id, vloot);
+            }
+        }
+
+        public void VlootVerwijderen(string id)
+        {
+            if (!this.VlotenLijst.ContainsKey(id))
+            {
+                throw new Exception("deze vloot zit niet in de lijst.");
+            }
+            else
+            {
+                VlotenLijst.Remove(id);
+            }
+        }
+
+        public void ZoekVloot(string id)
+        {
+            if (this.VlotenLijst.ContainsKey(id))
+            {
+                Console.WriteLine(VlotenLijst.id);
+            }
+            else
+            {
+                throw new Exception("Deze vloot zit niet in de rederij.");
             }
         }
     }
