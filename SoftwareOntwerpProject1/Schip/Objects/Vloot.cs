@@ -20,14 +20,68 @@ namespace ScheepvaartBL.Objects
 			}
 		}
 
-		public Dictionary<string, Schip> SchepenLijst { get; set; }
+		public List<Schip> SchepenLijst { get; set; }
 
-		public Vloot(string naam, Dictionary<string, Schip> schepenLijst)
+		public Vloot(string naam, List<Schip> schepenLijst)
         {       
             Naam = naam;
             SchepenLijst = schepenLijst;
         }
 
+		// Er moet van elke vloot apart een waarde worden berekent, anders kan de rederij niet aan de juiste informatie.
+
+		public decimal TotaleVlootWaarde()
+		{
+			// SchepenLijst.Values -> Zorgt dat de objectwaarden worden getarget in plaats van enkel de strings die als sleutel worden gebruikt.
+			// .OfType(CargoSchip) -> Definiëren dat het enkel in objecten met type CargoSchip gevonden kan worden.
+			decimal total = 0;
+
+			total += SchepenLijst.OfType<RoRoSchip>().Sum(roroSchip => roroSchip.CargoWaarde);
+			total += SchepenLijst.OfType<ContainerSchip>().Sum(containerSchip => containerSchip.CargoWaarde);
+			total += SchepenLijst.OfType<OlieTanker>().Sum(olieTanker => olieTanker.CargoWaarde);
+            total += SchepenLijst.OfType<GasTanker>().Sum(gasTanker => gasTanker.CargoWaarde);
+
+			return total;
+
+        }
+
+		// idem voor TotaalPassagiers
+
+		public int TotaalPassagiersVloot()
+		{
+            int total = 0;
+
+            total += SchepenLijst.OfType<CruiseSchip>().Sum(cruiseSchip => cruiseSchip.AantalPassagiers);
+            total += SchepenLijst.OfType<Veerboot>().Sum(veerBoot => veerBoot.AantalPassagiers);            
+
+            return total;            
+		}
+
+		// idem voor TonnagePervloot, moet gewoon in een Dictionary teruggegeven worden
+
+		public double TotaalTonnageVloot()
+		{
+			return SchepenLijst.Sum(schip => schip.Tonnage);
+		}
+
+		// idem voor totaal aantal volume
+
+		public double TotaalVolume ()
+		{
+            double total = 0;
+
+            total += SchepenLijst.OfType<OlieTanker>().Sum(olieTanker => olieTanker.Volume);
+            total += SchepenLijst.OfType<GasTanker>().Sum(gasTanker => gasTanker.Volume);
+
+            return total;
+        }
+
+		// idem voor aantal sleepboten (keren dat het type Sleepboot voorkomt)
+
+		public int TotaalSleepbotenVloot()
+		{
+			return SchepenLijst.OfType<Sleepboot>().Count();
+		}
 		public void VoegSchipToe(List<Schip> schepenLijst, Schip toeTeVoegenSchip)
 		{
 			if (!schepenLijst.Contains(toeTeVoegenSchip))
