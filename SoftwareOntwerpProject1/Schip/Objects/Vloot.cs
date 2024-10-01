@@ -27,5 +27,29 @@ namespace ScheepvaartBL.Objects
             Naam = naam;
             SchepenLijst = schepenLijst;
         }
+
+		public void VoegSchipToe(List<Schip> schepenLijst, Schip toeTeVoegenSchip)
+		{
+			if (!schepenLijst.Contains(toeTeVoegenSchip))
+			{
+				schepenLijst.Add(toeTeVoegenSchip);
+			}
+			else
+			{
+                Console.WriteLine("Het schip dat u wilt toevoegen bestaat al.");
+			}
+		}
+
+		public void VerwijderSchip(List<Schip> schepenLijst, Schip toeTeVoegenSchip)
+		{
+            if (schepenLijst.Contains(toeTeVoegenSchip))
+            {
+                schepenLijst.Remove(toeTeVoegenSchip);
+            }
+            else
+            {
+                Console.WriteLine("Het schip dat u wilt verwijderen bestaat niet.");
+            }
+        }
     }
 }
