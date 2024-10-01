@@ -30,5 +30,17 @@ namespace ScheepvaartBL.Objects
             VlotenLijst = schepenLijst;
             Havens = havens;
         }
+
+        public void HavenVerwijderen(List<string> havens, string teVerwijderenHaven)
+        {
+            if (havens.Contains(teVerwijderenHaven))
+            {
+                havens.Remove(teVerwijderenHaven);
+            }
+            else
+            {
+                Console.WriteLine("De haven die u wilt verwijderen bestaat niet.");
+            }
+        }
     }
 }
