@@ -82,11 +82,12 @@ namespace ScheepvaartBL.Objects
 		{
 			return SchepenLijst.OfType<Sleepboot>().Count();
 		}
-		public void VoegSchipToe(List<Schip> schepenLijst, Schip toeTeVoegenSchip)
+
+		public void VoegSchipToe(Schip toeTeVoegenSchip)
 		{
-			if (!schepenLijst.Contains(toeTeVoegenSchip))
+			if (!this.SchepenLijst.Contains(toeTeVoegenSchip))
 			{
-				schepenLijst.Add(toeTeVoegenSchip);
+				this.SchepenLijst.Add(toeTeVoegenSchip);
 			}
 			else
 			{
@@ -94,11 +95,11 @@ namespace ScheepvaartBL.Objects
 			}
 		}
 
-		public void VerwijderSchip(List<Schip> schepenLijst, Schip toeTeVoegenSchip)
+		public void VerwijderSchip(Schip toeTeVoegenSchip)
 		{
-            if (schepenLijst.Contains(toeTeVoegenSchip))
+            if (this.SchepenLijst.Contains(toeTeVoegenSchip))
             {
-                schepenLijst.Remove(toeTeVoegenSchip);
+                this.SchepenLijst.Remove(toeTeVoegenSchip);
             }
             else
             {

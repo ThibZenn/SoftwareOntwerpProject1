@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -83,35 +84,43 @@ namespace ScheepvaartBL.Objects
             }
         }
 
-        public void VlootToevoegen(string id, Vloot vloot)
+        public void VlootToevoegen(Vloot vloot)
         {
-            if (this.VlotenLijst.ContainsKey(id))
+            if (this.VlotenLijst.Contains(vloot))
             {
                 throw new Exception("vloot is al toegevoegd.");
             }
             else
             {
-                VlotenLijst.Add(id, vloot);
+                VlotenLijst.Add(vloot);
             }
         }
 
-        public void VlootVerwijderen(string id)
+        public void VlootVerwijderen(Vloot vloot)
         {
-            if (!this.VlotenLijst.ContainsKey(id))
+            if (!this.VlotenLijst.Contains(vloot))
             {
                 throw new Exception("deze vloot zit niet in de lijst.");
             }
             else
             {
-                VlotenLijst.Remove(id);
+                VlotenLijst.Remove(vloot);
             }
         }
 
-        public void ZoekVloot(string id)
+        public void ZoekVloot(string naam)
         {
-            if (this.VlotenLijst.ContainsKey(id))
+            Dictionary<string, Vloot> vlootDictionary = new Dictionary<string, Vloot>();
+
+            //dictionary opvullen volgens naam van de vloot
+            foreach (var item in this.VlotenLijst)
             {
-                Console.WriteLine(VlotenLijst.id);
+                vlootDictionary.Add(item.Naam, item);
+            }
+
+            if (vlootDictionary.TryGetValue(naam, out Vloot gevondenVloot))
+            {
+                Console.WriteLine($"Naam = {gevondenVloot.Naam} is gevonden.");
             }
             else
             {
