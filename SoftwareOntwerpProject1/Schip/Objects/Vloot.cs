@@ -106,5 +106,57 @@ namespace ScheepvaartBL.Objects
                 Console.WriteLine("Het schip dat u wilt verwijderen bestaat niet.");
             }
         }
+
+        // Retourneert het Schip || indien niet gevonden => null
+        public Schip ZoekSchip(string naamSchip)
+        {
+            // Controleer of het schip in de dictionary zit
+            if (SchepenLijst.ContainsKey(naamSchip))
+            {
+                Console.WriteLine($"Schip {naamSchip} gevonden.");
+                return SchepenLijst[naamSchip];
+            }
+            else
+            {
+                Console.WriteLine($"Schip {naamSchip} niet gevonden in vloot {Naam}.");
+                return null;  // Retourneer null als het schip niet bestaat
+            }
+        }
+
+
+        public void ToonSchepen()
+        {
+            // Controleer of er schepen in de vloot zijn
+            if (SchepenLijst.Count == 0)
+            {
+                Console.WriteLine($"Er zijn geen schepen in de vloot {Naam}.");
+            }
+            else
+            {
+                Console.WriteLine($"Schepen in vloot {Naam}:");
+                foreach (var schip in SchepenLijst.Values)
+                {
+                    //Schip klasse ToString()
+                    Console.WriteLine(schip);
+                }
+            }
+        }
+
+        // Verplaatst een schip van deze vloot naar een andere vloot
+        public void VerplaatsSchip(string naamSchip, Vloot nieuweVloot)
+        {
+            // Zoek het schip op basis van de naam
+            Schip schip = ZoekSchip(naamSchip);
+
+            if (schip != null && VerwijderSchip(naamSchip)) 
+            {
+                nieuweVloot.VoegSchipToe(schip);
+                Console.WriteLine($"Schip {naamSchip} is verplaatst van vloot {Naam} naar vloot {nieuweVloot.Naam}");
+            }
+            else
+            {
+                Console.WriteLine($"Verplaatsing mislukt, schip {naamSchip} niet gevonden.");
+            }
+        }
     }
 }
