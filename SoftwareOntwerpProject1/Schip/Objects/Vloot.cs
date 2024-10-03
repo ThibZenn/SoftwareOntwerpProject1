@@ -50,7 +50,7 @@ namespace ScheepvaartBL.Objects
 		public int TotaalPassagiersVloot()
 		{
             int total = 0;
-
+            // passagiersSchip?
             total += SchepenLijst.OfType<CruiseSchip>().Sum(cruiseSchip => cruiseSchip.AantalPassagiers);
             total += SchepenLijst.OfType<Veerboot>().Sum(veerBoot => veerBoot.AantalPassagiers);            
 

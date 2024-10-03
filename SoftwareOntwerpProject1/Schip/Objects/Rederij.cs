@@ -86,6 +86,7 @@ namespace ScheepvaartBL.Objects
 
         public void VlootToevoegen(Vloot vloot)
         {
+            //check op null
             if (this.VlotenLijst.Contains(vloot))
             {
                 throw new Exception("vloot is al toegevoegd.");
